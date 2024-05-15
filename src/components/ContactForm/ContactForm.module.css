@@ -1,0 +1,81 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 16px;
+  background: linear-gradient(
+    40deg,
+    rgb(45, 45, 45),
+    rgb(200, 211, 211) 50%,
+    rgb(45, 45, 45)
+  );
+  font-family: sans-serif;
+  font-weight: 600;
+  color: #2a4444;
+  position: relative;
+  transition: box-shadow 500ms linear;
+}
+.form:hover,
+.form:focus {
+  box-shadow: 8px 4px rgba(170, 77, 48, 0.278),
+    -8px -4px rgba(48, 111, 170, 0.278);
+}
+
+.input {
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  padding-left: 30px;
+  background-color: #fafafa;
+  color: #2a4444;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+}
+
+.addContactBtn {
+  background-color: #cfd4d467;
+  color: #2c2c2c;
+  border-radius: 4px;
+  /* height: 36px; */
+  /* border: none; */
+  border: none;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 8px;
+  transition: background-color 250ms linear, color 250ms linear;
+}
+.addContactBtn:disabled {
+  background-color: #cfd4d467;
+  color: #727272;
+}
+
+.addContactBtn:enabled:hover,
+.addContactBtn:enabled:focus {
+  background-color: #2a4444;
+  color: #fafafa;
+}
+
+.label {
+  position: relative;
+}
+.check {
+  position: absolute;
+  top: 240%;
+  left: 3%;
+  transform: translateY(-50%);
+}
+.errorName {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: rgba(243, 210, 200, 0.753);
+}
+.errorNumber {
+  position: absolute;
+  top: 86px;
+  right: 16px;
+  color: rgba(243, 210, 200, 0.753);
+}
