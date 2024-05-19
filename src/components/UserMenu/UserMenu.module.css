@@ -1,0 +1,35 @@
+.userMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.button {
+  display: inline-block;
+  padding: 4px 8px;
+  font-family: sans-serif;
+  font-weight: 600;
+  line-height: 0.5;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  transition: box-shadow 250ms linear;
+}
+
+.button:hover {
+  box-shadow: 2px 2px 0px rgba(170, 77, 48, 0.278),
+    -2px -2px 0px rgba(48, 111, 170, 0.278);
+}
+
+.userTitle {
+  margin: 0;
+  font-family: sans-serif;
+}
+.link {
+  text-decoration: none;
+  color: rgb(133, 133, 224);
+}
+.link:hover {
+  color: rgb(209, 137, 137);
+}

@@ -1,12 +1,18 @@
 import { FaUser } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
 
 import css from "./Contact.module.css";
-import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps";
+import ModalEdit from "../ModalEdit/ModalEdit";
+import { useState } from "react";
 
-export default function Contact({ data }) {
-  const dispatch = useDispatch();
+export default function Contact({ data, handleDelete }) {
+  const [modalIsOpen, setModalISOpen] = useState(false);
+  const [userId, setUserId] = useState("");
+  const handleToggleEdit = (id) => {
+    setUserId(id);
+    setModalISOpen(!modalIsOpen);
+  };
 
   return (
     <div className={css.card}>
@@ -25,12 +31,15 @@ export default function Contact({ data }) {
           </p>
         </li>
       </ul>
-      <button
-        className={css.cardBtn}
-        onClick={() => dispatch(deleteContact(data.id))}
-      >
-        Delete
+      <button className={css.editBtn} onClick={() => handleToggleEdit(data.id)}>
+        <MdEdit size="18px" />
       </button>
+      <button className={css.cardBtn} onClick={() => handleDelete(data.id)}>
+        Del
+      </button>
+      {modalIsOpen && (
+        <ModalEdit handleToggleEdit={handleToggleEdit} userId={userId} />
+      )}
     </div>
   );
 }

@@ -1,0 +1,12 @@
+.homePage {
+  display: flex;
+  flex-direction: column;
+  /* max-width: 500px; */
+  justify-content: space-between;
+  height: 100%;
+  padding: 24px;
+  text-align: center;
+}
+.image {
+  margin: 0 auto;
+}

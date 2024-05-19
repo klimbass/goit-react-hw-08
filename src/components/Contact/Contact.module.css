@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   border: none;
   border-radius: 8px;
   padding: 12px;
@@ -41,16 +42,38 @@
 }
 
 .cardBtn {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
   background-color: #7678786e;
   color: #fafafa;
   border-radius: 4px;
-  height: 36px;
+  /* height: 36px; */
   border: none;
 
-  font-size: 24px;
+  font-size: 14px;
   font-weight: 600;
+  line-height: 1;
   transition: background-color 250ms linear;
+  padding: 4px 6px;
 }
 .cardBtn:hover {
   background-color: rgba(83, 33, 17, 0.601);
+}
+.editBtn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  border: none;
+  color: #7678786e;
+  background-color: transparent;
+  padding: 2px;
+  border-radius: 4px;
+}
+.editBtn:hover,
+.editBtn:focus {
+  color: rgba(83, 33, 17, 0.601);
+}
+.editBtn:focus {
+  color: rgba(255, 68, 0, 0.601);
 }

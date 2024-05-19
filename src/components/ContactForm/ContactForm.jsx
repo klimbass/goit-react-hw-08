@@ -5,9 +5,11 @@ import * as Yup from "yup";
 import { GoCheckCircle } from "react-icons/go";
 import { GoCheckCircleFill } from "react-icons/go";
 
-import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
+
+import css from "./ContactForm.module.css";
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -33,59 +35,64 @@ export default function ContactForm() {
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values));
+    toast.success("Added successfully!!");
+
     actions.resetForm();
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={ContactSchema}
-    >
-      {({ errors, isValid }) => (
-        <Form className={css.form}>
-          <label htmlFor={nameId} className={css.label}>
-            Name{" "}
-            {errors.name ? (
-              <GoCheckCircle className={css.check} />
-            ) : (
-              <GoCheckCircleFill className={css.check} />
-            )}
-          </label>
-          <Field className={css.input} id={nameId} name="name"></Field>
-          <ErrorMessage
-            className={css.errorName}
-            name="name"
-            component="span"
-          />
-          <label htmlFor={numberId} className={css.label}>
-            Number{" "}
-            {errors.number ? (
-              <GoCheckCircle className={css.check} />
-            ) : (
-              <GoCheckCircleFill className={css.check} />
-            )}
-          </label>
-          <Field
-            type="tel"
-            className={css.input}
-            id={numberId}
-            name="number"
-          ></Field>
-          <ErrorMessage
-            className={css.errorNumber}
-            name="number"
-            component="span"
-          />
-          <button
-            className={css.addContactBtn}
-            type="submit"
-            disabled={!isValid}
-          >
-            Add contact
-          </button>
-        </Form>
-      )}
-    </Formik>
+    <div>
+      <Toaster />
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={ContactSchema}
+      >
+        {({ errors, isValid }) => (
+          <Form className={css.form}>
+            <label htmlFor={nameId} className={css.label}>
+              Name{" "}
+              {errors.name ? (
+                <GoCheckCircle className={css.check} />
+              ) : (
+                <GoCheckCircleFill className={css.check} />
+              )}
+            </label>
+            <Field className={css.input} id={nameId} name="name"></Field>
+            <ErrorMessage
+              className={css.errorName}
+              name="name"
+              component="span"
+            />
+            <label htmlFor={numberId} className={css.label}>
+              Number{" "}
+              {errors.number ? (
+                <GoCheckCircle className={css.check} />
+              ) : (
+                <GoCheckCircleFill className={css.check} />
+              )}
+            </label>
+            <Field
+              type="tel"
+              className={css.input}
+              id={numberId}
+              name="number"
+            ></Field>
+            <ErrorMessage
+              className={css.errorNumber}
+              name="number"
+              component="span"
+            />
+            <button
+              className={css.addContactBtn}
+              type="submit"
+              disabled={!isValid}
+            >
+              Add contact
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 }

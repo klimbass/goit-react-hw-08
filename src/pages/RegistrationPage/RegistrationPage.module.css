@@ -1,6 +1,6 @@
 .form {
   display: flex;
-  max-width: 350px;
+  max-width: 450px;
   flex-direction: column;
   gap: 8px;
   border-radius: 8px;
@@ -16,7 +16,7 @@
   color: #2a4444;
   position: relative;
   transition: box-shadow 500ms linear;
-  margin: 24px auto;
+  margin: 25px auto;
 }
 .form:hover,
 .form:focus {
@@ -66,18 +66,25 @@
 .check {
   position: absolute;
   top: 240%;
-  left: 3%;
+  left: 1%;
   transform: translateY(-50%);
 }
 .errorName {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 25%;
+  right: 3%;
   color: rgba(243, 210, 200, 0.753);
 }
-.errorNumber {
+.errorEmail {
   position: absolute;
-  top: 86px;
-  right: 16px;
+  top: 45%;
+  right: 3%;
+  color: rgba(243, 210, 200, 0.753);
+}
+
+.errorPass {
+  position: absolute;
+  top: 65%;
+  right: 3%;
   color: rgba(243, 210, 200, 0.753);
 }

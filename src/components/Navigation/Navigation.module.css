@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.link {
+  font-family: sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgb(119, 120, 124);
+  margin: 8px;
+}
+
+.active {
+  color: rgb(34, 48, 55);
+}

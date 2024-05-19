@@ -1,0 +1,67 @@
+.appBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  background-color: #e0e9e9da;
+  padding: 4px 160px;
+}
+.titleBox {
+  background-color: #858c8c;
+  border-radius: 4px;
+  padding: 0;
+  margin: 24px;
+  transition: background-color 250ms linear;
+}
+.appTitle {
+  margin: 0;
+  display: inline-block;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 800;
+  color: #fafafa;
+  padding: 2px 8px;
+  max-width: 360px;
+  transition: background-color 250ms linear, color 250ms linear;
+}
+
+.appTitle {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 103, 57, 0.845),
+    rgba(57, 153, 244, 0.712)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientAnimation 5s infinite;
+  background-size: 200% 200%;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.titleBox {
+  background-color: transparent;
+}
+
+.layout {
+  border-top: 1px solid rgb(201, 202, 203);
+  box-shadow: -2px -4px 2px rgb(188, 187, 187);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+}
+.children {
+  flex: 1;
+}

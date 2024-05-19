@@ -1,0 +1,9 @@
+.userCard {
+  padding: 16px 24px;
+}
+
+.image {
+  border: 1px solid rgba(48, 111, 170, 0.278);
+  border-radius: 8px;
+  padding: 8px;
+}
