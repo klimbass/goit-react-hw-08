@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer";
 import ModalConfirm from "../ModalConfirm/ModalConfirm";
 import css from "./Layout.module.css";
 import { selectModalIsOpen } from "../../redux/modal/selectors";
+import { Link } from "react-router-dom";
 
 export default function Layout({ children }) {
   const modalIsOpen = useSelector(selectModalIsOpen);
@@ -14,7 +15,9 @@ export default function Layout({ children }) {
 
         <div className={css.appBox}>
           <div className={css.titleBox}>
-            <h1 className={css.appTitle}>Phonebook</h1>
+            <Link to="/">
+              <h1 className={css.appTitle}>Phonebook</h1>
+            </Link>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { MdEdit } from "react-icons/md";
 
 import css from "./Contact.module.css";
 import ModalEdit from "../ModalEdit/ModalEdit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Contact({ data, handleDelete }) {
   const [modalIsOpen, setModalISOpen] = useState(false);
@@ -13,6 +13,17 @@ export default function Contact({ data, handleDelete }) {
     setUserId(id);
     setModalISOpen(!modalIsOpen);
   };
+
+  useEffect(() => {
+    if (modalIsOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [modalIsOpen]);
 
   return (
     <div className={css.card}>

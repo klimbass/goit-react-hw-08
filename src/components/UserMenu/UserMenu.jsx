@@ -8,7 +8,6 @@ export default function UserMenu() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const handleClick = () => {
-    console.log("click");
     dispatch(logout());
   };
 

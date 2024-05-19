@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import css from "./ModalEdit.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useId, useState } from "react";
@@ -7,6 +6,8 @@ import { GoCheckCircle, GoCheckCircleFill } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
 import { selectContacts } from "../../redux/contacts/selectors";
 import { editContact } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
+import css from "./ModalEdit.module.css";
 
 export default function ModalEdit({ handleToggleEdit, userId }) {
   const dispatch = useDispatch();
@@ -22,11 +23,6 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
 
     setContact(item[0]);
   }, [contactsList, userId]);
-
-  //   const handleChange = (event) => {
-  //     console.log(event.target.value);
-  //     // setValue(event.target.value);
-  //   };
 
   const nameId = useId();
   const numberId = useId();
@@ -51,6 +47,7 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
       })
     );
     handleToggleEdit();
+    toast.success("Edit successful!");
   };
   const initialValues = {
     name: contact.name || "",
@@ -59,6 +56,7 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
 
   return (
     <div className={css.modalBox}>
+      <Toaster />
       <div className={css.modal}>
         <Formik
           initialValues={initialValues}
@@ -76,14 +74,7 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
                   <GoCheckCircleFill className={css.check} />
                 )}
               </label>
-              <Field
-                className={css.input}
-                id={nameId}
-                name="name"
-                // value={contact.name}
-                // onChange={handleChange}
-                // placeholder="hola"
-              ></Field>
+              <Field className={css.input} id={nameId} name="name"></Field>
               <ErrorMessage
                 className={css.errorName}
                 name="name"

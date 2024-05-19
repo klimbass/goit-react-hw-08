@@ -1,7 +1,9 @@
 import clsx from "clsx";
-import css from "./ModalConfirm.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setConfirmTrue, setModalClose } from "../../redux/modal/slice";
+import css from "./ModalConfirm.module.css";
+import { selectModalIsOpen } from "../../redux/modal/selectors";
+import { useEffect } from "react";
 
 export default function ModalConfirm() {
   const dispatch = useDispatch();
@@ -10,6 +12,18 @@ export default function ModalConfirm() {
   const handleClickCancel = () => {
     dispatch(setModalClose());
   };
+  const modalIsOpen = useSelector(selectModalIsOpen);
+
+  useEffect(() => {
+    if (modalIsOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [modalIsOpen]);
 
   const handleClickConfirm = () => {
     dispatch(setConfirmTrue());

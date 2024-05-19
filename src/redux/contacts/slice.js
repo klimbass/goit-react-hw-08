@@ -5,6 +5,7 @@ import {
   editContact,
   fetchContacts,
 } from "./operations";
+import { logout } from "../auth/operations";
 
 const handlePending = (state) => {
   state.loading = true;
@@ -59,7 +60,12 @@ const contactsSlice = createSlice({
           return item;
         });
       })
-      .addCase(editContact.rejected, handleRejected);
+      .addCase(editContact.rejected, handleRejected)
+      .addCase(logout.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.items = [];
+      });
   },
 });
 

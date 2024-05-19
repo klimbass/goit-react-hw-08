@@ -31,7 +31,6 @@ export default function LoginPage() {
   };
 
   const handleSubmit = (e) => {
-    console.log(e);
     dispatch(login(e));
   };
 
