@@ -1,12 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
-import css from "./LoginPage.module.css";
 import { useId } from "react";
 import { useDispatch } from "react-redux";
-import { GoCheckCircle, GoCheckCircleFill } from "react-icons/go";
 import { login } from "../../redux/auth/operations";
 import { Link } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import css from "./LoginPage.module.css";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -41,43 +41,46 @@ export default function LoginPage() {
         onSubmit={handleSubmit}
         validationSchema={ValidateSchema}
       >
-        {({ errors, isValid }) => (
+        {({ errors, isValid, touched }) => (
           <Form className={css.form}>
-            <label htmlFor={email} className={css.label}>
-              Email{" "}
-              {errors.email ? (
-                <GoCheckCircle className={css.check} />
-              ) : (
-                <GoCheckCircleFill className={css.check} />
-              )}
-            </label>
-            <Field className={css.input} id={email} name="email"></Field>
+            <Field
+              id={email}
+              name="email"
+              as={TextField}
+              variant="outlined"
+              label="Email"
+              fullWidth
+              error={touched.email && Boolean(errors.email)}
+            ></Field>
             <ErrorMessage
               className={css.errorEmail}
               name="email"
               component="span"
             />
-            <label htmlFor={password} className={css.label}>
-              Password{" "}
-              {errors.password ? (
-                <GoCheckCircle className={css.check} />
-              ) : (
-                <GoCheckCircleFill className={css.check} />
-              )}
-            </label>
-            <Field className={css.input} id={password} name="password"></Field>
+
+            <Field
+              id={password}
+              name="password"
+              as={TextField}
+              variant="outlined"
+              label="Password"
+              fullWidth
+              error={touched.password && Boolean(errors.password)}
+            ></Field>
             <ErrorMessage
               className={css.errorPass}
               name="password"
               component="span"
             />
-            <button
-              className={css.addContactBtn}
+
+            <Button
+              className={css.btnLogin}
               type="submit"
               disabled={!isValid}
+              variant="contained"
             >
               Log in
-            </button>
+            </Button>
           </Form>
         )}
       </Formik>

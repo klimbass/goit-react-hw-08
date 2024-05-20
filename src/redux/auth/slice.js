@@ -10,27 +10,45 @@ const authSlice = createSlice({
     },
     token: null,
     isLoggedIn: false,
-    isRefreshing: false,
+    isRefreshitoastSuccessng: false,
+    toastError: false,
+    toastSuccess: false,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(register.pending, (state, action) => {})
+      .addCase(register.pending, (state, action) => {
+        state.isLoggedIn = false;
+        state.toastError = false;
+      })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.toastError = false;
+        state.toastSuccess = true;
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoggedIn = false;
+        state.toastError = true;
       })
-      .addCase(login.pending, (state, action) => {})
+      .addCase(login.pending, (state, action) => {
+        state.isLoggedIn = false;
+        state.toastError = false;
+      })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.toastError = false;
+        state.toastSuccess = true;
       })
-      .addCase(login.rejected, (state, action) => {})
-      .addCase(logout.pending, (state, action) => {})
+      .addCase(login.rejected, (state, action) => {
+        state.isLoggedIn = false;
+        state.toastError = true;
+      })
+      .addCase(logout.pending, (state, action) => {
+        state.toastError = false;
+      })
       .addCase(logout.fulfilled, (state, action) => {
         state.user = {
           name: null,
@@ -39,11 +57,15 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;
+        state.toastError = false;
       })
-      .addCase(logout.rejected, (state, action) => {})
+      .addCase(logout.rejected, (state, action) => {
+        state.toastError = true;
+      })
       .addCase(refreshUser.pending, (state, action) => {
-        state.isLoggedIn = true;
+        state.isLoggedIn = false;
         state.isRefreshing = true;
+        state.toastError = false;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
@@ -51,8 +73,11 @@ const authSlice = createSlice({
 
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.toastError = false;
       })
-      .addCase(refreshUser.rejected, (state, action) => {});
+      .addCase(refreshUser.rejected, (state, action) => {
+        state.toastError = true;
+      });
   },
 });
 

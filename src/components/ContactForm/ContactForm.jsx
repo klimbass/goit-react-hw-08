@@ -1,13 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-
-import { GoCheckCircle } from "react-icons/go";
-import { GoCheckCircleFill } from "react-icons/go";
-
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
+
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 import css from "./ContactForm.module.css";
 
@@ -48,48 +47,47 @@ export default function ContactForm() {
         onSubmit={handleSubmit}
         validationSchema={ContactSchema}
       >
-        {({ errors, isValid }) => (
+        {({ errors, isValid, touched }) => (
           <Form className={css.form}>
-            <label htmlFor={nameId} className={css.label}>
-              Name{" "}
-              {errors.name ? (
-                <GoCheckCircle className={css.check} />
-              ) : (
-                <GoCheckCircleFill className={css.check} />
-              )}
-            </label>
-            <Field className={css.input} id={nameId} name="name"></Field>
+            <Field
+              id={nameId}
+              name="name"
+              as={TextField}
+              variant="outlined"
+              label="Name"
+              fullWidth
+              error={touched.name && Boolean(errors.name)}
+            ></Field>
             <ErrorMessage
               className={css.errorName}
               name="name"
               component="span"
             />
-            <label htmlFor={numberId} className={css.label}>
-              Number{" "}
-              {errors.number ? (
-                <GoCheckCircle className={css.check} />
-              ) : (
-                <GoCheckCircleFill className={css.check} />
-              )}
-            </label>
+
             <Field
               type="tel"
-              className={css.input}
               id={numberId}
               name="number"
+              label="Number"
+              as={TextField}
+              variant="outlined"
+              fullWidth
+              error={touched.name && Boolean(errors.name)}
             ></Field>
             <ErrorMessage
               className={css.errorNumber}
               name="number"
               component="span"
             />
-            <button
+            <Button
               className={css.addContactBtn}
+              variant="contained"
               type="submit"
               disabled={!isValid}
+              color="primary"
             >
               Add contact
-            </button>
+            </Button>
           </Form>
         )}
       </Formik>

@@ -3,6 +3,11 @@
   flex-direction: column;
   padding: 24px;
   align-items: end;
-  background-color: #e0e9e9da;
+  background: linear-gradient(
+    40deg,
+    rgb(167, 165, 165),
+    rgb(227, 238, 238) 50%,
+    rgb(227, 225, 225)
+  );
   box-shadow: 0 0 4px #e0e9e9da;
 }

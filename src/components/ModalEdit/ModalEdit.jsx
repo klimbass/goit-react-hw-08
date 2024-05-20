@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectContacts } from "../../redux/contacts/selectors";
 import { editContact } from "../../redux/contacts/operations";
 import toast, { Toaster } from "react-hot-toast";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+
 import css from "./ModalEdit.module.css";
 
 export default function ModalEdit({ handleToggleEdit, userId }) {
@@ -64,23 +67,38 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
           validationSchema={ContactSchema}
           enableReinitialize
         >
-          {({ errors, isValid, dirty }) => (
+          {({ errors, isValid, dirty, touched }) => (
             <Form className={css.form}>
               <p className={css.title}>Edit contact:</p>
-              <label htmlFor={nameId} className={css.label}>
+              {/* <label htmlFor={nameId} className={css.label}>
                 {errors.name ? (
                   <GoCheckCircle className={css.check} />
                 ) : (
                   <GoCheckCircleFill className={css.check} />
                 )}
-              </label>
-              <Field className={css.input} id={nameId} name="name"></Field>
+              </label> */}
+              {/* <Field className={css.input} id={nameId} name="name"></Field> */}
+              {/* <ErrorMessage
+                className={css.errorName}
+                name="name"
+                component="span"
+              /> */}
+              <Field
+                id={nameId}
+                name="name"
+                as={TextField}
+                variant="outlined"
+                label="Name"
+                fullWidth
+                error={touched.name && Boolean(errors.name)}
+              ></Field>
               <ErrorMessage
                 className={css.errorName}
                 name="name"
                 component="span"
               />
-              <label htmlFor={numberId} className={css.label}>
+
+              {/* <label htmlFor={numberId} className={css.label}>
                 {errors.number ? (
                   <GoCheckCircle className={css.check} />
                 ) : (
@@ -97,22 +115,39 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
                 className={css.errorNumber}
                 name="number"
                 component="span"
+              /> */}
+              <Field
+                type="tel"
+                id={numberId}
+                name="number"
+                label="Number"
+                as={TextField}
+                variant="outlined"
+                fullWidth
+                error={touched.name && Boolean(errors.name)}
+              ></Field>
+              <ErrorMessage
+                className={css.errorNumber}
+                name="number"
+                component="span"
               />
-              <div>
-                <button
+              <div className={css.btnBox}>
+                <Button
+                  variant="contained"
                   type="button"
                   className={classListCancel}
                   onClick={handleToggleEdit}
                 >
                   Cancel
-                </button>
-                <button
+                </Button>
+                <Button
+                  variant="contained"
                   type="submit"
                   className={classListConfirm}
                   disabled={!isValid || !dirty}
                 >
                   Confirm
-                </button>
+                </Button>
               </div>
             </Form>
           )}

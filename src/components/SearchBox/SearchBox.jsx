@@ -1,10 +1,10 @@
 import { IoSearch } from "react-icons/io5";
-import { useId } from "react";
 
 import css from "./SearchBox.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilter } from "../../redux/filters/slice";
 import { selectNameFilter } from "../../redux/filters/selectors";
+import { InputAdornment, TextField } from "@mui/material";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
@@ -13,18 +13,24 @@ export default function SearchBox() {
     dispatch(changeFilter(e.target.value));
   };
 
-  const inputId = useId();
   return (
     <div className={css.searchBox}>
-      <label htmlFor={inputId}>Find contacts by name</label>
-      <input
-        id={inputId}
+      <TextField
         className={css.input}
+        variant="outlined"
+        fullWidth
+        placeholder="Find contacts"
+        onChange={handleChange}
         type="text"
         value={name}
-        onChange={handleChange}
-      ></input>
-      <IoSearch className={css.searchIcon} size="20px" />
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <IoSearch size="20px" />
+            </InputAdornment>
+          ),
+        }}
+      />
     </div>
   );
 }

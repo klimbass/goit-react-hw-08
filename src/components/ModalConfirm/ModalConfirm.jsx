@@ -4,11 +4,10 @@ import { setConfirmTrue, setModalClose } from "../../redux/modal/slice";
 import css from "./ModalConfirm.module.css";
 import { selectModalIsOpen } from "../../redux/modal/selectors";
 import { useEffect } from "react";
+import Button from "@mui/material/Button";
 
 export default function ModalConfirm() {
   const dispatch = useDispatch();
-  const classListCancel = clsx(css.btn, css.btnCancel);
-  const classListConfirm = clsx(css.btn, css.btnConfirm);
   const handleClickCancel = () => {
     dispatch(setModalClose());
   };
@@ -34,12 +33,22 @@ export default function ModalConfirm() {
     <div className={css.modalBox}>
       <div className={css.modal}>
         <p>Are you shure?</p>
-        <button className={classListCancel} onClick={handleClickCancel}>
-          Cancel
-        </button>
-        <button className={classListConfirm} onClick={handleClickConfirm}>
-          Confirm
-        </button>
+        <div className={css.btnBox}>
+          <Button
+            onClick={handleClickCancel}
+            variant="contained"
+            color="secondary"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleClickConfirm}
+            variant="contained"
+            color="primary"
+          >
+            Confirm
+          </Button>
+        </div>
       </div>
     </div>
   );

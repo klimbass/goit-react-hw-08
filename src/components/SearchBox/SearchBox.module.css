@@ -1,36 +1,13 @@
 .searchBox {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  max-width: 350px;
+  width: 100%;
+  max-width: 390px;
+  min-width: 200px;
   margin: 0 auto;
-}
-
-.input {
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  padding-left: 30px;
-  background-color: #c1c3c34e;
-  color: #2a4444;
-  font-family: sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  outline: none;
-  transition: box-shadow 500ms linear;
+  padding: 20px;
 }
 
 .input:hover,
 .input:focus {
   box-shadow: 8px 4px rgba(170, 77, 48, 0.278),
     -8px -4px rgba(48, 111, 170, 0.278);
-}
-
-.searchIcon {
-  position: absolute;
-  top: 48%;
-  left: 5px;
-  /* transform: translate(0, -50%); */
-  color: #2a4444;
 }

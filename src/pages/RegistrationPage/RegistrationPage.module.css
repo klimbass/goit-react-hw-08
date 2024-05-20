@@ -7,12 +7,11 @@
   padding: 16px;
   background: linear-gradient(
     40deg,
-    rgb(45, 45, 45),
+    rgb(167, 165, 165),
     rgb(200, 211, 211) 50%,
-    rgb(45, 45, 45)
+    rgb(227, 225, 225)
   );
   font-family: sans-serif;
-  font-weight: 600;
   color: #2a4444;
   position: relative;
   transition: box-shadow 500ms linear;
@@ -24,65 +23,28 @@
     -8px -4px rgba(48, 111, 170, 0.278);
 }
 
-.input {
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  padding-left: 30px;
-  background-color: #fafafa;
-  color: #2a4444;
-  font-family: sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  outline: none;
-}
-
-.addContactBtn {
-  background-color: #cfd4d467;
-  color: #2c2c2c;
-  border-radius: 4px;
-  border: none;
-  font-size: 24px;
-  font-weight: 600;
-  margin-top: 8px;
-  transition: background-color 250ms linear, color 250ms linear;
-}
-.addContactBtn:disabled {
-  background-color: #cfd4d467;
-  color: #727272;
-}
-
-.addContactBtn:enabled:hover,
-.addContactBtn:enabled:focus {
-  background-color: #2a4444;
-  color: #fafafa;
-}
-
-.label {
-  position: relative;
-}
-.check {
-  position: absolute;
-  top: 240%;
-  left: 1%;
-  transform: translateY(-50%);
-}
 .errorName {
+  font-family: sans-serif;
+  font-size: 12px;
   position: absolute;
-  top: 25%;
-  right: 3%;
-  color: rgba(243, 210, 200, 0.753);
+  top: 98px;
+  right: 20px;
+  color: #f06b6bc0;
 }
 .errorEmail {
+  font-family: sans-serif;
+  font-size: 12px;
   position: absolute;
-  top: 45%;
-  right: 3%;
-  color: rgba(243, 210, 200, 0.753);
+  top: 160px;
+  right: 20px;
+  color: #f06b6bc0;
 }
 
 .errorPass {
+  font-family: sans-serif;
+  font-size: 12px;
   position: absolute;
-  top: 65%;
-  right: 3%;
-  color: rgba(243, 210, 200, 0.753);
+  top: 226px;
+  right: 20px;
+  color: #f06b6bc0;
 }

@@ -1,8 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Suspense, lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { selectIsRefreshing } from "../../redux/auth/selectors";
+import {
+  selectIsRefreshing,
+  selectToastError,
+  selectToastSuccess,
+} from "../../redux/auth/selectors";
 import { refreshUser } from "../../redux/auth/operations";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import toast, { Toaster } from "react-hot-toast";
+
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#2b7c71",
+    },
+    secondary: {
+      main: "#dc143c",
+    },
+  },
+});
 
 import Layout from "../Layout/Layout";
 
@@ -24,6 +46,13 @@ const RestrictedRoute = lazy(() =>
 const UserPage = lazy(() => import("../../pages/UserPage/UserPage"));
 
 function App() {
+  const toastSuccess = useSelector(selectToastSuccess);
+  const toastError = useSelector(selectToastError);
+  useEffect(() => {
+    if (toastSuccess) toast.success("Successful!");
+    if (toastError) toast.error("Something went wrong..");
+  }, [toastSuccess, toastError]);
+
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
@@ -31,51 +60,54 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Layout>
-      {isRefreshing ? (
-        <b>Refreshing...</b>
-      ) : (
-        <Suspense fallback={<div>Loading page...</div>}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute
-                  component={<RegistrationPage />}
-                  redirectTo="/"
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute
-                  component={<LoginPage />}
-                  redirectTo="/contacts"
-                />
-              }
-            />
-            <Route
-              path="/contacts"
-              element={
-                <PrivateRoute
-                  component={<ContactsPage />}
-                  redirectTo="/login"
-                />
-              }
-            />
-            <Route
-              path="/userpage"
-              element={
-                <PrivateRoute component={<UserPage />} redirectTo="/login" />
-              }
-            />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      )}
-    </Layout>
+    <ThemeProvider theme={theme}>
+      <Layout>
+        {isRefreshing ? (
+          <b>Refreshing...</b>
+        ) : (
+          <Suspense fallback={<div>Loading page...</div>}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/register"
+                element={
+                  <RestrictedRoute
+                    component={<RegistrationPage />}
+                    redirectTo="/"
+                  />
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <RestrictedRoute
+                    component={<LoginPage />}
+                    redirectTo="/contacts"
+                  />
+                }
+              />
+              <Route
+                path="/contacts"
+                element={
+                  <PrivateRoute
+                    component={<ContactsPage />}
+                    redirectTo="/login"
+                  />
+                }
+              />
+              <Route
+                path="/userpage"
+                element={
+                  <PrivateRoute component={<UserPage />} redirectTo="/login" />
+                }
+              />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        )}
+        <Toaster />;
+      </Layout>
+    </ThemeProvider>
   );
 }
 

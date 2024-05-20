@@ -1,24 +1,18 @@
 .card {
   position: relative;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
   min-width: 300px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #8c8e8e4e;
   font-family: sans-serif;
-  color: #121b1b;
   gap: 16px;
   transition: box-shadow 500ms linear, background-color 250ms linear;
+  border: 1px solid rgb(232, 231, 231);
 }
 .card:hover,
 .card:focus {
   box-shadow: 8px 4px rgba(170, 77, 48, 0.278),
     -8px -4px rgba(48, 111, 170, 0.278);
-  background-color: #c1c3c34e;
 }
 
 .cardLis {
@@ -29,51 +23,17 @@
 
 .icon {
   color: #515252;
+  margin-right: 8px;
 }
 
-.cardText {
+.btnBox {
+  position: relative;
   display: flex;
-  gap: 8px;
-  align-items: baseline;
-  font-family: sans-serif;
-  font-weight: 600;
-  font-size: 24px;
-  margin: 0;
+  flex-direction: column;
 }
-
-.cardBtn {
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  background-color: #7678786e;
-  color: #fafafa;
-  border-radius: 4px;
-  /* height: 36px; */
-  border: none;
-
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1;
-  transition: background-color 250ms linear;
-  padding: 4px 6px;
-}
-.cardBtn:hover {
-  background-color: rgba(83, 33, 17, 0.601);
-}
-.editBtn {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  border: none;
-  color: #7678786e;
-  background-color: transparent;
-  padding: 2px;
-  border-radius: 4px;
-}
-.editBtn:hover,
-.editBtn:focus {
-  color: rgba(83, 33, 17, 0.601);
-}
-.editBtn:focus {
-  color: rgba(255, 68, 0, 0.601);
+.hr {
+  color: rgb(255, 255, 255);
+  margin: 2px;
+  margin-bottom: 4px;
+  width: 100%;
 }

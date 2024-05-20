@@ -3,8 +3,14 @@
   flex-direction: column;
   gap: 8px;
   align-items: center;
-  background-color: #e0e9e9da;
+  background: linear-gradient(
+    40deg,
+    rgb(167, 165, 165),
+    rgb(227, 238, 238) 50%,
+    rgb(227, 225, 225)
+  );
   padding: 4px 160px;
+  box-shadow: -1px 1px 2px rgb(159, 157, 157);
 }
 .titleBox {
   background-color: #858c8c;

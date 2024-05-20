@@ -1,15 +1,16 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
-import css from "./RegistrationPage.module.css";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import { GoCheckCircle, GoCheckCircleFill } from "react-icons/go";
+import css from "./RegistrationPage.module.css";
 
 export default function RegistrationPage() {
   const dispatch = useDispatch();
-  const name = useId();
+  const nameId = useId();
   const email = useId();
   const password = useId();
 
@@ -46,58 +47,61 @@ export default function RegistrationPage() {
       onSubmit={handleSubmit}
       validationSchema={ValidateSchema}
     >
-      {({ errors, isValid }) => (
+      {({ errors, isValid, touched }) => (
         <Form className={css.form}>
           <h2>Registration:</h2>
-          <label htmlFor={name} className={css.label}>
-            Username{" "}
-            {errors.name ? (
-              <GoCheckCircle className={css.check} />
-            ) : (
-              <GoCheckCircleFill className={css.check} />
-            )}
-          </label>
-          <Field className={css.input} id={name} name="name"></Field>
+          <Field
+            id={nameId}
+            name="name"
+            as={TextField}
+            variant="outlined"
+            label="Name"
+            fullWidth
+            error={touched.name && Boolean(errors.name)}
+          ></Field>
           <ErrorMessage
             className={css.errorName}
             name="name"
             component="span"
           />
-          <label htmlFor={email} className={css.label}>
-            Email{" "}
-            {errors.email ? (
-              <GoCheckCircle className={css.check} />
-            ) : (
-              <GoCheckCircleFill className={css.check} />
-            )}
-          </label>
-          <Field className={css.input} id={email} name="email"></Field>
+          <Field
+            id={email}
+            name="email"
+            as={TextField}
+            variant="outlined"
+            label="Email"
+            fullWidth
+            error={touched.email && Boolean(errors.email)}
+          ></Field>
           <ErrorMessage
             className={css.errorEmail}
             name="email"
             component="span"
           />
-          <label htmlFor={password} className={css.label}>
-            Password{" "}
-            {errors.password ? (
-              <GoCheckCircle className={css.check} />
-            ) : (
-              <GoCheckCircleFill className={css.check} />
-            )}
-          </label>
-          <Field className={css.input} id={password} name="password"></Field>
+
+          <Field
+            id={password}
+            name="password"
+            as={TextField}
+            variant="outlined"
+            label="Password"
+            fullWidth
+            error={touched.password && Boolean(errors.password)}
+          ></Field>
           <ErrorMessage
             className={css.errorPass}
             name="password"
             component="span"
           />
-          <button
-            className={css.addContactBtn}
+
+          <Button
+            className={css.btnLogin}
             type="submit"
             disabled={!isValid}
+            variant="contained"
           >
-            Registered
-          </button>
+            Register
+          </Button>
         </Form>
       )}
     </Formik>

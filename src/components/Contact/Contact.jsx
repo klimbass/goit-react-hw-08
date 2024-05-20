@@ -1,10 +1,14 @@
-import { FaUser } from "react-icons/fa6";
-import { FaPhoneAlt } from "react-icons/fa";
-import { MdEdit } from "react-icons/md";
-
-import css from "./Contact.module.css";
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { FaUser, FaPhoneAlt } from "react-icons/fa";
 import ModalEdit from "../ModalEdit/ModalEdit";
 import { useEffect, useState } from "react";
+
+import css from "./Contact.module.css";
 
 export default function Contact({ data, handleDelete }) {
   const [modalIsOpen, setModalISOpen] = useState(false);
@@ -26,28 +30,36 @@ export default function Contact({ data, handleDelete }) {
   }, [modalIsOpen]);
 
   return (
-    <div className={css.card}>
-      <ul className={css.cardLis}>
-        <li className={css.cardListItem}>
-          <p className={css.cardText}>
-            <FaUser className={css.icon} size="18px" />
-            {data.name}
-          </p>
-        </li>
-
-        <li className={css.cardListItem}>
-          <p className={css.cardText}>
-            <FaPhoneAlt className={css.icon} size="18px" />
-            {data.number}
-          </p>
-        </li>
-      </ul>
-      <button className={css.editBtn} onClick={() => handleToggleEdit(data.id)}>
-        <MdEdit size="18px" />
-      </button>
-      <button className={css.cardBtn} onClick={() => handleDelete(data.id)}>
-        Del
-      </button>
+    <div>
+      <Card className={css.card}>
+        <CardContent>
+          <Typography variant="h5" component="div">
+            <FaUser className={css.icon} size="18px" /> {data.name}
+          </Typography>
+          <hr className={css.hr} />
+          <Typography variant="body3" color="text.secondary">
+            <FaPhoneAlt className={css.icon} size="18px" /> {data.number}
+          </Typography>
+        </CardContent>
+        <CardActions className={css.actions}>
+          <div className={css.btnBox}>
+            <Button
+              color="primary"
+              onClick={() => handleToggleEdit(data.id)}
+              className={css.editBtn}
+            >
+              Edit
+            </Button>
+            <Button
+              color="secondary"
+              onClick={() => handleDelete(data.id)}
+              className={css.cardBtn}
+            >
+              Del
+            </Button>
+          </div>
+        </CardActions>
+      </Card>
       {modalIsOpen && (
         <ModalEdit handleToggleEdit={handleToggleEdit} userId={userId} />
       )}
