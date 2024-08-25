@@ -21,5 +21,5 @@ export default function UserPage() {
         <p>Contacts: {contacts.length}</p>
       </div>
     </div>
-  );
+  )
 }

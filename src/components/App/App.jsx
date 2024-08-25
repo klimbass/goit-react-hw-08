@@ -105,7 +105,7 @@ function App() {
             </Routes>
           </Suspense>
         )}
-        <Toaster />;
+        <Toaster />
       </Layout>
     </ThemeProvider>
   );

@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 8px 24px;
   align-items: end;
   background: linear-gradient(
     40deg,
@@ -10,4 +10,6 @@
     rgb(227, 225, 225)
   );
   box-shadow: 0 0 4px #e0e9e9da;
+  line-height: 0.6;
+  
 }

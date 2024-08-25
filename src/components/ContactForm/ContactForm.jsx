@@ -15,8 +15,8 @@ const ContactSchema = Yup.object().shape({
     .min(3, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  number: Yup.string()
-    .matches(/^[0-9-]+$/, "Invalid phone number")
+  phoneNumber: Yup.string()
+    .matches( /^(\+?\d{1,4}[-.\s]?)?(\(?\d{1,3}\)?[-.\s]?)?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/, "Invalid phone number")
     .min(3, "Too short")
     .max(50, "Too long")
     .required("Required"),
@@ -24,7 +24,7 @@ const ContactSchema = Yup.object().shape({
 
 const initialValues = {
   name: "",
-  number: "",
+  phoneNumber: "",
 };
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -33,6 +33,8 @@ export default function ContactForm() {
   const numberId = useId();
 
   const handleSubmit = (values, actions) => {
+console.log(values);
+
     dispatch(addContact(values));
     toast.success("Added successfully!!");
 
@@ -67,7 +69,7 @@ export default function ContactForm() {
             <Field
               type="tel"
               id={numberId}
-              name="number"
+              name="phoneNumber"
               label="Number"
               as={TextField}
               variant="outlined"
@@ -76,7 +78,7 @@ export default function ContactForm() {
             ></Field>
             <ErrorMessage
               className={css.errorNumber}
-              name="number"
+              name="phoneNumber"
               component="span"
             />
             <Button

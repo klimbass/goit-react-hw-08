@@ -11,7 +11,8 @@
 }
 .card:hover,
 .card:focus {
-  box-shadow: 8px 4px rgba(170, 77, 48, 0.278),
+  box-shadow: 8px 4px #aa4d3047,
+
     -8px -4px rgba(48, 111, 170, 0.278);
 }
 
@@ -21,16 +22,42 @@
   gap: 8px;
 }
 
+
 .icon {
   color: #515252;
   margin-right: 8px;
 }
 
-.btnBox {
+.favBtn{
+  position: absolute;
+  top: 5px;
+  right: 15%;
+  border: none;
+  background-color: transparent;
+}
+
+
+.editBtn {
+
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
+  display: block;
+  padding: 2px 4px 0 4px;
+  transition: background-color 250ms linear;
+  &:hover{
+    background-color: rgba(48, 111, 170, 0.122);
+  }
+}
+
+/* .btnBox {
   position: relative;
   display: flex;
   flex-direction: column;
-}
+} */
 .hr {
   color: rgb(255, 255, 255);
   margin: 2px;

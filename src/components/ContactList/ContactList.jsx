@@ -41,7 +41,7 @@ export default function ContactList() {
       <Toaster />
       {base.map((contact) => {
         return (
-          <li key={contact.id}>
+          <li key={contact._id}>
             <Contact data={contact} handleDelete={handleDelete} />
           </li>
         );

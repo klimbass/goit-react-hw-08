@@ -12,20 +12,21 @@ import Button from "@mui/material/Button";
 
 import css from "./ModalEdit.module.css";
 
-export default function ModalEdit({ handleToggleEdit, userId }) {
+export default function ModalEdit({ handleToggleEdit, userId, handleDelete, contactId }) {
   const dispatch = useDispatch();
   const [contact, setContact] = useState("");
   const classListCancel = clsx(css.btn, css.btnCancel);
   const classListConfirm = clsx(css.btn, css.btnConfirm);
   const contactsList = useSelector(selectContacts);
 
+
   useEffect(() => {
     const item = contactsList.filter((item) => {
-      return item.id === userId;
+      return item._id === contactId;
     });
 
     setContact(item[0]);
-  }, [contactsList, userId]);
+  }, [contactsList, userId, contactId]);
 
   const nameId = useId();
   const numberId = useId();
@@ -35,7 +36,7 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
       .min(3, "Too short name!")
       .max(50, "Too long name!")
       .required("Required"),
-    number: Yup.string()
+      phoneNumber: Yup.string()
       .matches(/^[0-9-]+$/, "Invalid phone number")
       .min(3, "Too short number!")
       .max(50, "Too long number!")
@@ -46,7 +47,7 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
     dispatch(
       editContact({
         contact: e,
-        id: userId,
+        id: contactId,
       })
     );
     handleToggleEdit();
@@ -54,7 +55,7 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
   };
   const initialValues = {
     name: contact.name || "",
-    number: contact.number || "",
+    phoneNumber: contact.phoneNumber || "",
   };
 
   return (
@@ -119,7 +120,7 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
               <Field
                 type="tel"
                 id={numberId}
-                name="number"
+                name="phoneNumber"
                 label="Number"
                 as={TextField}
                 variant="outlined"
@@ -128,7 +129,7 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
               ></Field>
               <ErrorMessage
                 className={css.errorNumber}
-                name="number"
+                name="phoneNumber"
                 component="span"
               />
               <div className={css.btnBox}>
@@ -148,6 +149,13 @@ export default function ModalEdit({ handleToggleEdit, userId }) {
                 >
                   Confirm
                 </Button>
+                <Button
+              color="secondary"
+              onClick={() => handleDelete(contactId)}
+              className={classListCancel}
+            >
+              Del
+            </Button>
               </div>
             </Form>
           )}
