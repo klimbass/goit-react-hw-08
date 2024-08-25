@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://contacts-6ig8.onrender.com";
+
+// axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.withCredentials = true;
 
 
